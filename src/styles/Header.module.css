@@ -1,0 +1,105 @@
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+}
+.searchDiv {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.searchInput {
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  border: 0.5px solid #bdbdbd;
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 50%;
+}
+.searchInput input {
+  width: 100%;
+  padding-right: 5px;
+  background: none;
+  border: none;
+  outline: none;
+}
+.searchInput input::placeholder {
+  font-size: 12px;
+  color: #8f8b8b;
+}
+
+/* right side of header design */
+.sortDiv {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.sortDiv span {
+  font-size: 12px;
+  color: #989898;
+  margin-right: 10px;
+}
+fieldset {
+  display: flex;
+  justify-content: center;
+  color: #8f8b8b;
+  font-size: 10px;
+  width: 25%;
+  padding-inline: 15px;
+  border: 0.5px solid #c4c4c4;
+  border-radius: 2px;
+  box-sizing: border-box;
+  margin-inline: 8px;
+}
+fieldset:nth-child(4) {
+  margin-right: 0;
+}
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  /* -webkit-appearance: none; */
+  -moz-appearance: none;
+  /* appearance: none; */
+}
+fieldset > select::-ms-expand {
+  display: none;
+}
+select::after {
+  content: "solomon";
+}
+
+/* media query for header starts here */
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .topBar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .searchDiv {
+    grid-column: 1/13;
+  }
+  .searchInput {
+    width: 100%;
+  }
+
+  .sortDiv {
+    grid-column: 1/13;
+  }
+  .sortDiv span {
+    display: none;
+  }
+  fieldset {
+    width: 100%;
+    display: block;
+    margin: 1em 0;
+  }
+  fieldset:nth-child(3) {
+    margin-inline: 8px;
+  }
+}

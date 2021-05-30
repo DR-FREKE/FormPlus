@@ -1,0 +1,54 @@
+/* google font for inter font */
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+@font-face {
+  font-family: "Circular-Std Black";
+  src: local("Circular-Std Black"),
+    url(./fonts/CircularStd-Black.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular-Std Medium";
+  src: local("Circular-Std Medium"),
+    url(./fonts/CircularStd-Medium.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular-Std Book";
+  src: local("Circular-Std Book"),
+    url(./fonts/CircularStd-Book.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Circular-Std Bold";
+  src: local("Circular-Std Bold"),
+    url(./fonts/CircularStd-Bold.ttf) format("truetype");
+}
+* {
+  font-family: Circular-Std Book;
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: #252525 #fff;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #252525;
+  border-radius: 20px;
+  /* border: 3px solid orange; */
+}
+
+.template_body {
+  padding: 0 1em;
+  flex: 1;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .template_body {
+    padding: 0;
+  }
+}

@@ -1,0 +1,36 @@
+.alertDiv {
+  padding: 2em;
+}
+.alert {
+  padding: 1em;
+  background-color: #fff4ea;
+  border-radius: 2px;
+  text-align: center;
+}
+.alert > span:nth-child(even) {
+  font-size: 13px;
+}
+.closeBtn {
+  color: #000;
+  font-weight: bold;
+  float: right;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closeBtn:hover {
+  /* animation: zoom; */
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .alertDiv {
+    padding: 0.5em 2em;
+  }
+  .alert {
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+}

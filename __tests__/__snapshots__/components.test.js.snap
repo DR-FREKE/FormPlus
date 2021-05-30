@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test for AppLayout should render the Layout component 1`] = `
+<div
+  className="container"
+>
+  <main
+    className="main"
+  />
+</div>
+`;
+
+exports[`test for header component should render the Header component 1`] = `
+<div
+  className="topBar"
+>
+  <div
+    className="searchDiv"
+  >
+    <div
+      className="searchInput"
+    >
+      <input
+        placeholder="Search Template"
+      />
+      <i
+        className="fa fa-search"
+        style={
+          Object {
+            "fontWeight": "lighter",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="sortDiv"
+  >
+    <span>
+      Sort By:
+    </span>
+    <fieldset>
+      <legend>
+        Category
+      </legend>
+      <select
+        name="some name"
+      >
+        <option
+          value="all"
+        >
+          All
+        </option>
+        <option
+          value="volvo"
+        >
+          Education
+        </option>
+        <option
+          value="mercedes"
+        >
+          E-commerce
+        </option>
+        <option
+          value="health"
+        >
+          Health
+        </option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Order
+      </legend>
+      <select
+        name="some name"
+      >
+        <option>
+          Default
+        </option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Date
+      </legend>
+      <select
+        name="some name"
+      >
+        <option>
+          Default
+        </option>
+      </select>
+    </fieldset>
+  </div>
+</div>
+`;
+
+exports[`test for header component should test input is rendered 1`] = `"input"`;
+
+exports[`test for template listing should render all boxes as list 1`] = `
+<div
+  className="mainContainer"
+>
+  <div
+    className="headerTitle"
+  >
+    <span>
+      All Templates
+    </span>
+    <span>
+       templates
+    </span>
+  </div>
+  <div
+    className="grid"
+  />
+</div>
+`;
+
+exports[`test for template listing should render template box 1`] = `
+<div
+  className="box"
+>
+  <div
+    className="topBox"
+  >
+    <div
+      className="topHeader"
+    >
+      <span />
+    </div>
+    <div
+      className="description"
+    >
+      <span />
+    </div>
+  </div>
+  <div
+    className="footerBox"
+  >
+    <span>
+      use template
+    </span>
+  </div>
+</div>
+`;
