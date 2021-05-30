@@ -45,24 +45,26 @@ exports[`test for header component should render the Header component 1`] = `
       </legend>
       <select
         name="some name"
+        onChange={[Function]}
+        value=""
       >
         <option
-          value="all"
+          value="All"
         >
           All
         </option>
         <option
-          value="volvo"
+          value="Education"
         >
           Education
         </option>
         <option
-          value="mercedes"
+          value="E-commerce"
         >
           E-commerce
         </option>
         <option
-          value="health"
+          value="Health"
         >
           Health
         </option>
@@ -74,6 +76,8 @@ exports[`test for header component should render the Header component 1`] = `
       </legend>
       <select
         name="some name"
+        onChange={[Function]}
+        value=""
       >
         <option>
           Default
@@ -86,6 +90,8 @@ exports[`test for header component should render the Header component 1`] = `
       </legend>
       <select
         name="some name"
+        onChange={[Function]}
+        value=""
       >
         <option>
           Default
