@@ -1,5 +1,4 @@
 const BASE_URL = "https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1";
-let total = 0;
 
 const processTemplate = (template, index) => ({
   id: index + 1,
@@ -12,7 +11,7 @@ const processTemplate = (template, index) => ({
 
 // get match the filtered category with the category array
 const getCategory = (value) => (content) => {
-  const res = content.category.find((item) => item === value);
+  const res = content.categories.find((item) => item === value);
   return res;
 };
 
@@ -23,7 +22,7 @@ export const fetchTemplateData = async () => {
   if (response.ok) {
     const data = await response.json();
     const templates = data.map(processTemplate);
-    total = templates.length;
+    const total = templates.length;
 
     return { templates, total };
   } else {
@@ -33,13 +32,18 @@ export const fetchTemplateData = async () => {
 };
 
 export const filterTemplateData = async (templates, filter_val) => {
-  try {
-    const template_data = templates;
-    const result = template_data.filter(getCategory(filter_val));
-    total = result.length;
+  if (templates.length > 0) {
+    const result =
+      filter_val == "All Templates"
+        ? templates
+        : templates.filter(getCategory(filter_val));
+    const total = result.length;
+    // alert(filter_val);
+
+    // alert(JSON.stringify(result));
 
     return { result, total };
-  } catch (error) {
-    throw new Error(error);
+  } else {
+    throw new Error("an error occured");
   }
 };

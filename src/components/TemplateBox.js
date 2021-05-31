@@ -9,6 +9,9 @@ const TemplateBox = (props) => (
       </div>
       <div className={styles.description}>
         <span>{props.description}</span>
+        <div className={styles.category}>
+          <span>Categories {JSON.stringify(props.categories)}</span>
+        </div>
       </div>
     </div>
     <div className={styles.footerBox}>

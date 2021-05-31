@@ -3,7 +3,7 @@ import styles from "../styles/Template.module.css";
 
 const Pagination = ({ total, ...props }) => (
   <div className={styles.paginateContainer}>
-    {total && (
+    {total > 0 && (
       <>
         <div className={styles.prev}>
           <span

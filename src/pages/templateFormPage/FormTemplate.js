@@ -17,17 +17,24 @@ const FormTemplate = ({ templates, total, ...props }) => {
   const NUMBER_ON_PAGE = 15;
 
   useEffect(() => {
-    loadList();
-    if (total < 0) {
-      props.getTemplates();
-    }
+    if (total > 0) loadList();
+
+    if (total <= 0 || total == undefined) props.getTemplates();
   }, [currentPage, total]);
 
   const loadList = () => {
     // to reduce whats rendered when page loads
     const begin = (currentPage - 1) * NUMBER_ON_PAGE;
     const end = begin + NUMBER_ON_PAGE;
-    const sliced_data = templates && templates.slice(begin, end);
+    let sliced_data = null;
+
+    if (props.filtering != true) {
+      sliced_data = templates && templates.slice(begin, end);
+    } else {
+      sliced_data =
+        props.filter_form_template &&
+        props.filter_form_template.slice(begin, end);
+    }
 
     setSliceData(sliced_data);
   };
@@ -49,9 +56,13 @@ const FormTemplate = ({ templates, total, ...props }) => {
     }
   };
 
+  const handleFilter = (filter_value) => {
+    props.filterTemplate(templates, filter_value);
+  };
+
   return (
     <div className="template_body">
-      <Header />
+      <Header runFilter={(val) => handleFilter(val)} />
       <div className="">
         <div className={styles.alertDiv}>
           <div className={styles.alert}>
@@ -63,7 +74,13 @@ const FormTemplate = ({ templates, total, ...props }) => {
             <span className={styles.closeBtn}>&times;</span>
           </div>
         </div>
-        {!props.loading && <TemplateList templates={sliceData} total={total} />}
+        {!props.loading && (
+          <TemplateList
+            name={props.filter_data}
+            templates={sliceData}
+            total={total}
+          />
+        )}
       </div>
       <div className={paginateStyle.paginationDiv}>
         <Pagination
@@ -82,6 +99,9 @@ const mapStateToProps = (state) => ({
   templates: state.template.form_template,
   failed: state.template.failed,
   total: state.template.total,
+  filtering: state.template.filtering,
+  filter_data: state.template.filter_data,
+  filter_form_template: state.template.filter_form_template,
 });
 
 export default connect(mapStateToProps, { filterTemplate, getTemplates })(
