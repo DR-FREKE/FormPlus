@@ -48,6 +48,15 @@
   line-height: 17px;
   color: #3f3e3e;
 }
+.description .category {
+  padding-top: 10px;
+}
+.category > span {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+  color: #3f3e3e;
+}
 
 /* design for footer of each box */
 .footerBox {

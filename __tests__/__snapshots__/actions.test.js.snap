@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test async redux should test that it dispatches GET_TEMPLATE 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "templates": undefined,
+      "total": undefined,
+    },
+    "type": "GET_TEMPLATE",
+  },
+]
+`;
+
+exports[`test async redux should test that it dispatches GET_TEMPLATE_ERROR 1`] = `
+Array [
+  Object {
+    "payload": "an error occured",
+    "type": "GET_TEMPLATE_ERROR",
+  },
+]
+`;
+
+exports[`test async redux should test that it dispatches LOADING 1`] = `
+Array [
+  Object {
+    "type": "LOADING",
+  },
+]
+`;
+
+exports[`test filteration should test that it dispatches FILTER_ERROR 1`] = `
+Array [
+  Object {
+    "payload": "Cannot read property 'length' of undefined",
+    "type": "FILTER_ERROR",
+  },
+]
+`;
+
+exports[`test filteration should test that it dispatches FILTER_TEMPLATE 1`] = `
+Array [
+  Object {
+    "payload": "Cannot read property 'length' of undefined",
+    "type": "FILTER_ERROR",
+  },
+]
+`;
+
+exports[`test filteration should test that it dispatches LOADING 1`] = `
+Array [
+  Object {
+    "type": "LOADING",
+  },
+]
+`;
+
+exports[`test for app mode action should check nothing is passed 1`] = `
+Object {
+  "payload": Object {},
+  "type": "APP_MODE",
+}
+`;
+
+exports[`test for app mode action should return the theme type 1`] = `
+Object {
+  "payload": Object {
+    "theme": true,
+  },
+  "type": "APP_MODE",
+}
+`;

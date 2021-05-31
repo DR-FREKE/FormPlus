@@ -11,7 +11,9 @@ const templateReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
+        filtering: false,
         form_template: action.payload.templates,
+        // filter_form_template: [],
         total: action.payload.total,
         failed: null,
       };
@@ -27,7 +29,9 @@ const templateReducer = (state = {}, action) => {
         ...state,
         loading: false,
         filtering: true,
-        form_template: action.payload.result,
+        filter_data: action.payload.filter_data,
+        // form_template: [],
+        filter_form_template: action.payload.result,
         total: action.payload.total,
       };
     case type.FILTER_ERROR:
