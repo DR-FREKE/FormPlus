@@ -16,7 +16,7 @@ exports[`test async redux should test that it dispatches GET_TEMPLATE_ERROR 1`] 
 Array [
   Object {
     "payload": "an error occured",
-    "type": "GET_TEMPLATE_ERROR",
+    "type": "GET_ERROR",
   },
 ]
 `;
@@ -33,7 +33,7 @@ exports[`test filteration should test that it dispatches FILTER_ERROR 1`] = `
 Array [
   Object {
     "payload": "Cannot read property 'length' of undefined",
-    "type": "FILTER_ERROR",
+    "type": "GET_ERROR",
   },
 ]
 `;
@@ -42,7 +42,7 @@ exports[`test filteration should test that it dispatches FILTER_TEMPLATE 1`] = `
 Array [
   Object {
     "payload": "Cannot read property 'length' of undefined",
-    "type": "FILTER_ERROR",
+    "type": "GET_ERROR",
   },
 ]
 `;

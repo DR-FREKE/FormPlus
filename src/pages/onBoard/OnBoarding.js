@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getTemplates } from "../../store/actions/action.creator";
+import styles from "../../styles/onboard.module.css";
+import img from "../../styles/images/logo3.png";
 
 const OnBoarding = ({ total, templates, ...props }) => {
   const [showapp, setShowapp] = useState(false);
@@ -14,10 +16,20 @@ const OnBoarding = ({ total, templates, ...props }) => {
   }, [total]);
 
   return (
-    <div>
-      <h3>
-        Welcome and have a nice On Boarding {total}, {JSON.stringify(templates)}
-      </h3>
+    <div className={styles.OnBoarding}>
+      <div>
+        <img src={img} alt="" width="250px" height="80px" />
+      </div>
+      <div className={styles.loadContainer}>
+        <div className={styles.loader}>
+          <span className={styles.shape}></span>
+        </div>
+      </div>
+      <div>
+        <small className={styles.messageText}>
+          Have a wonderful experience
+        </small>
+      </div>
     </div>
   );
 };

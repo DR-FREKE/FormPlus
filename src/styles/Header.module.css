@@ -4,6 +4,8 @@
   align-items: center;
   padding: 1em 2em;
   background-color: #fff;
+  position: sticky;
+  top: 0;
 }
 .searchDiv {
   flex-direction: column;
@@ -76,11 +78,12 @@ select::after {
 }
 
 /* media query for header starts here */
-@media only screen and (max-width: 760px),
+@media only screen and (max-width: 480px),
   (min-device-width: 768px) and (max-device-width: 1024px) {
   .topBar {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
   }
   .searchDiv {
     grid-column: 1/13;
@@ -102,5 +105,19 @@ select::after {
   }
   fieldset:nth-child(3) {
     margin-inline: 8px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .searchDiv {
+    grid-column: 1/5;
+  }
+  .sortDiv {
+    grid-column: 5/13;
+    /* background-color: cyan; */
+  }
+  .sortDiv span {
+    width: 200px;
+    display: block;
   }
 }

@@ -15,6 +15,21 @@ const getCategory = (value) => (content) => {
   return res;
 };
 
+const compareData = (value) => (content1, content2) => {
+  // convert to small letters
+  const name_one = content1.template_name.toLowerCase();
+  const name_two = content2.template_name.toLowerCase();
+  if (name_one < name_two && value == "dsc") {
+    return 1;
+  }
+
+  if (name_one > name_two && value == "asc") {
+    return 1;
+  }
+
+  return 0;
+};
+
 //fetch the data using this endpoint
 export const fetchTemplateData = async () => {
   const response = await fetch(`${BASE_URL}/public/task_templates`);
@@ -38,10 +53,35 @@ export const filterTemplateData = async (templates, filter_val) => {
         ? templates
         : templates.filter(getCategory(filter_val));
     const total = result.length;
-    // alert(filter_val);
 
-    // alert(JSON.stringify(result));
+    return { result, total, templates };
+  } else {
+    throw new Error("an error occured");
+  }
+};
 
+export const sortByOrder = (templates, value) => {
+  if (templates.length > 0) {
+    const result = templates.sort(compareData(value));
+
+    const total = result.length;
+
+    return { result, total };
+  } else {
+    throw new Error("an error occured");
+  }
+};
+
+export const searchTemplateForm = async (templates, value) => {
+  if (templates.length > 0) {
+    const result = templates.filter((content) =>
+      content.template_name.toLowerCase().includes(value)
+    );
+    const total = result.length;
+
+    if (total <= 0) {
+      throw new Error("does not exists");
+    }
     return { result, total };
   } else {
     throw new Error("an error occured");

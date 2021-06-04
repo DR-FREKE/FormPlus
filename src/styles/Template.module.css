@@ -25,6 +25,7 @@
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  /* animation: zoomer 1s; */
 }
 .topBox {
   display: flex;
@@ -93,7 +94,10 @@
 }
 
 .prev {
+  display: flex;
   flex: 1;
+  justify-content: flex-start;
+  align-items: center;
 }
 .numbers {
   flex: 1;
@@ -101,12 +105,19 @@
   justify-content: center;
 }
 .next {
+  display: flex;
   flex: 1;
-  text-align: end;
+  justify-content: flex-end;
+  align-items: center;
 }
-.next span,
-.numbers span,
-.prev span {
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content span,
+.numbers span {
   color: #3f3f3f;
   font-size: 14px;
   line-height: 20px;
@@ -123,9 +134,21 @@ span.active {
 }
 /* pagination design ends */
 
+/* keyframe for boxes  for animation*/
+@keyframes zoomer {
+  0% {
+    transform: scale(0.5, 0.5);
+  }
+  50% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
 /* media query begins here */
-@media only screen and (max-width: 760px),
-  (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -137,5 +160,10 @@ span.active {
   }
   .paginateContainer {
     padding-inline: 0;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

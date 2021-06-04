@@ -7,6 +7,7 @@ import rootReducer from "./indexReducer";
 let persistConfig = {
   key: "root",
   storage,
+  blacklist: ["template"],
 };
 
 let composeEnhancers = compose;

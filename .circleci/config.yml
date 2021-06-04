@@ -29,7 +29,13 @@ jobs:
           pkg-manager: yarn
       - run:
           name: Run tests
-          command: npm test
+          command: yarn test
+      - run:
+          name: Build codebase
+          command: yarn build
+      - run:
+          name: Deploy Netlify
+          command: yarn netlify:deploy
 
 workflows:
   # Below is the definition of your workflow.
