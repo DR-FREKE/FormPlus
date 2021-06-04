@@ -40,6 +40,7 @@ const templateReducer = (state = {}, action) => {
         ...state,
         loading: false,
         searching: true,
+        failed: "",
         form_template: action.payload.result,
         total: action.payload.total,
       };

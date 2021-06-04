@@ -28,9 +28,9 @@ const FormTemplate = ({ templates, total, ...props }) => {
   useEffect(() => {
     if (total > 0) loadList();
 
-    if (total <= 0 || (total == undefined && !props.searching))
+    if ((total <= 0 || total == undefined) && !props.failed)
       props.getTemplates();
-  }, [currentPage, total, props.sorting, props.searching]);
+  }, [currentPage, total, props.sorting, props.searching, props.failed]);
 
   const loadList = () => {
     // to reduce whats rendered when page loads
@@ -101,6 +101,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
       />
       <div className="">
         <Alert styles={styles} />
+        {/* <span>{props.failed && props.failed}</span> */}
         {renderItem()}
       </div>
       <div className={paginateStyle.paginationDiv}>
