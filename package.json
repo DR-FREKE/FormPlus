@@ -8,7 +8,7 @@
     "test": "jest --verbose --coverage",
     "test:watch": "jest --watchAll --verbose --coverage",
     "eject": "react-scripts eject",
-    "netlify:deploy": "netlify deploy --dir=./build -p -m \"$(git log -1 --pretty=%B)\""
+    "netlify:deploy": "netlify login netlify deploy --dir=./build -p -m \"$(git log -1 --pretty=%B)\""
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
