@@ -1,0 +1,52 @@
+.OnBoarding {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+  width: 100%;
+  flex-direction: column;
+  padding: 10em 0;
+}
+.loadContainer {
+  padding: 1em 0 0.5em;
+}
+.loader {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 3px;
+  background-color: #f9f9f9;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.shape {
+  position: absolute;
+  left: 0;
+  background-color: #05a4b9;
+  border-radius: 5px;
+  width: 60px;
+  height: inherit;
+  display: block;
+  top: 0;
+  opacity: 0.5;
+  transition: all 1s ease-in-out;
+  animation: slide 1.3s infinite;
+}
+.messageText {
+  font-family: "Inter", sans-serif;
+  color: #3f3e3e;
+  font-size: 12px;
+}
+
+@keyframes slide {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 90px;
+  }
+  100% {
+    left: 0;
+  }
+}

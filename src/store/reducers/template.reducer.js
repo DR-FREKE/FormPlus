@@ -13,16 +13,9 @@ const templateReducer = (state = {}, action) => {
         loading: false,
         filtering: false,
         form_template: action.payload.templates,
-        // filter_form_template: [],
+        original: action.payload.templates,
         total: action.payload.total,
         failed: null,
-      };
-    case type.GET_TEMPLATE_ERROR:
-      return {
-        ...state,
-        loading: false,
-        filtering: false,
-        failed: action.payload,
       };
     case type.FILTER_TEMPLATE:
       return {
@@ -30,15 +23,33 @@ const templateReducer = (state = {}, action) => {
         loading: false,
         filtering: true,
         filter_data: action.payload.filter_data,
-        // form_template: [],
-        filter_form_template: action.payload.result,
+        form_template: action.payload.result,
+        original: action.payload.templates,
         total: action.payload.total,
       };
-    case type.FILTER_ERROR:
+    case type.SORT_BY_ORDER:
       return {
         ...state,
         loading: false,
-        filtering: true,
+        sorting: true,
+        form_template: action.payload.result,
+        // original: action.payload.original,
+      };
+    case type.SEARCH_TEMPLATE:
+      return {
+        ...state,
+        loading: false,
+        searching: true,
+        form_template: action.payload.result,
+        total: action.payload.total,
+      };
+    case type.GET_ERROR:
+      return {
+        ...state,
+        loading: false,
+        searching: false,
+        form_template: [],
+        total: 0,
         failed: action.payload,
       };
     default:

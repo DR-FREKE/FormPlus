@@ -3,13 +3,22 @@ import { connect } from "react-redux";
 import Header from "../../components/Header";
 import Pagination from "../../components/Pagination";
 import TemplateList from "../../components/TemplateList";
+import Alert from "../../components/Alert";
 import styles from "../../styles/FormTemplateBody.module.css";
 import paginateStyle from "../../styles/Template.module.css";
 
 import {
   filterTemplate,
   getTemplates,
+  sortTemplateByOrder,
+  searchTemplate,
 } from "../../store/actions/action.creator";
+
+const Loader = () => (
+  <div className={styles.spinnerContainer}>
+    <div className={styles.spinner}></div>
+  </div>
+);
 
 const FormTemplate = ({ templates, total, ...props }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,24 +28,18 @@ const FormTemplate = ({ templates, total, ...props }) => {
   useEffect(() => {
     if (total > 0) loadList();
 
-    if (total <= 0 || total == undefined) props.getTemplates();
-  }, [currentPage, total]);
+    if (total <= 0 || (total == undefined && !props.searching))
+      props.getTemplates();
+  }, [currentPage, total, props.sorting, props.searching]);
 
   const loadList = () => {
     // to reduce whats rendered when page loads
     const begin = (currentPage - 1) * NUMBER_ON_PAGE;
     const end = begin + NUMBER_ON_PAGE;
-    let sliced_data = null;
-
-    if (props.filtering != true) {
-      sliced_data = templates && templates.slice(begin, end);
-    } else {
-      sliced_data =
-        props.filter_form_template &&
-        props.filter_form_template.slice(begin, end);
-    }
+    let sliced_data = templates && templates.slice(begin, end);
 
     setSliceData(sliced_data);
+    window.scrollTo(0, 0);
   };
 
   const handleNext = () => {
@@ -57,38 +60,59 @@ const FormTemplate = ({ templates, total, ...props }) => {
   };
 
   const handleFilter = (filter_value) => {
-    props.filterTemplate(templates, filter_value);
+    // let form_data;
+    // if (props.sorting == true) {
+    //   form_data = templates;
+    // } else {
+    //   form_data = props.original_templates;
+    // }
+    props.filterTemplate(props.original_templates, filter_value);
+  };
+
+  const handleSortOrder = (value) => {
+    props.sortTemplateByOrder(templates, value);
+    loadList();
+  };
+
+  const handleSearch = (value) => {
+    props.searchTemplate(props.original_templates, value);
+  };
+
+  const renderItem = () => {
+    if (!props.loading) {
+      return (
+        <TemplateList
+          name={props.filter_data}
+          templates={sliceData}
+          total={total}
+        />
+      );
+    } else {
+      return <Loader />;
+    }
   };
 
   return (
     <div className="template_body">
-      <Header runFilter={(val) => handleFilter(val)} />
+      <Header
+        runFilter={handleFilter}
+        sortOrder={handleSortOrder}
+        search={handleSearch}
+      />
       <div className="">
-        <div className={styles.alertDiv}>
-          <div className={styles.alert}>
-            <i className=""></i>
-            <span>
-              Tada! Get started with a free template, Can't find what you are
-              looking for? Search from the 1000+ available templates
-            </span>
-            <span className={styles.closeBtn}>&times;</span>
-          </div>
-        </div>
-        {!props.loading && (
-          <TemplateList
-            name={props.filter_data}
-            templates={sliceData}
-            total={total}
-          />
-        )}
+        <Alert styles={styles} />
+        {renderItem()}
       </div>
       <div className={paginateStyle.paginationDiv}>
-        <Pagination
-          total={total}
-          currentPage={currentPage}
-          next={handleNext}
-          previous={handlePrevious}
-        />
+        {!props.loading && (
+          <Pagination
+            total={total}
+            numberonPage={NUMBER_ON_PAGE}
+            currentPage={currentPage}
+            next={handleNext}
+            previous={handlePrevious}
+          />
+        )}
       </div>
     </div>
   );
@@ -101,9 +125,14 @@ const mapStateToProps = (state) => ({
   total: state.template.total,
   filtering: state.template.filtering,
   filter_data: state.template.filter_data,
-  filter_form_template: state.template.filter_form_template,
+  original_templates: state.template.original,
+  sorting: state.template.sorting,
+  searching: state.template.searching,
 });
 
-export default connect(mapStateToProps, { filterTemplate, getTemplates })(
-  FormTemplate
-);
+export default connect(mapStateToProps, {
+  filterTemplate,
+  getTemplates,
+  sortTemplateByOrder,
+  searchTemplate,
+})(FormTemplate);
