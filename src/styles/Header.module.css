@@ -120,4 +120,7 @@ select::after {
     width: 200px;
     display: block;
   }
+  fieldset {
+    margin-inline: auto;
+  }
 }
