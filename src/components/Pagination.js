@@ -4,7 +4,7 @@ import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 
 const Pagination = ({ total, totalPageNum, ...props }) => (
   <div className={styles.paginateContainer}>
-    {total > 0 && (
+    {total > props.numberonPage && (
       <>
         <div className={styles.prev}>
           <div

@@ -1,9 +1,13 @@
 import React from "react";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 import renderer from "react-test-renderer";
 import Header from "../src/components/Header";
 import Layout from "../src/components/Layout";
 import TemplateBox from "../src/components/TemplateBox";
 import TemplateList from "../src/components/TemplateList";
+
+const mockStore = configureStore([]);
 
 /** test for Layout of the page */
 describe("test for AppLayout", () => {
@@ -35,13 +39,27 @@ describe("test for header component", () => {
 
 /** test for template listing */
 describe("test for template listing", () => {
+  let store;
+  beforeEach(() => {
+    store = mockStore({
+      template: {
+        filtering: false,
+      },
+    });
+  });
   it("should render template box", () => {
     const template_box = renderer.create(<TemplateBox />).toJSON();
     expect(template_box).toMatchSnapshot();
   });
 
   it("should render all boxes as list", () => {
-    const template_list = renderer.create(<TemplateList />).toJSON();
+    const template_list = renderer
+      .create(
+        <Provider store={store}>
+          <TemplateList />
+        </Provider>
+      )
+      .toJSON();
     expect(template_list).toMatchSnapshot();
   });
 });

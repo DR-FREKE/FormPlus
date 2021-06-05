@@ -156,6 +156,8 @@ exports[`test for template listing should render all boxes as list 1`] = `
     </span>
     <span>
        templates
+       
+      
     </span>
   </div>
   <div

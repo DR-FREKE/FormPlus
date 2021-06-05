@@ -15,7 +15,7 @@ const templateReducer = (state = {}, action) => {
         form_template: action.payload.templates,
         original: action.payload.templates,
         total: action.payload.total,
-        failed: null,
+        failed: false,
       };
     case type.FILTER_TEMPLATE:
       return {
