@@ -56,7 +56,6 @@
 
 @media only screen and (max-width: 480px) {
   .OnBoarding {
-    height: 100vh;
     justify-content: center;
     align-items: center;
   }
