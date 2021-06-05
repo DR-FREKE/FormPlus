@@ -2,10 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
   width: 100%;
   flex-direction: column;
   padding: 10em 0;
+}
+.OnBoarding img {
+  width: 250px;
+  height: 80px;
 }
 .loadContainer {
   padding: 1em 0 0.5em;
@@ -48,5 +51,18 @@
   }
   100% {
     left: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .OnBoarding img {
+    width: 150px;
+    height: 45px;
+  }
+  .loadContainer {
+    padding: 0.5em 0;
+  }
+  .messageText {
+    font-size: 11px;
   }
 }

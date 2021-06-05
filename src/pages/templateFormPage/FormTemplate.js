@@ -7,6 +7,7 @@ import Alert from "../../components/Alert";
 import styles from "../../styles/FormTemplateBody.module.css";
 import paginateStyle from "../../styles/Template.module.css";
 import ErrorBanner from "../../components/ErrorBanner";
+import Loader from "../../components/Loader";
 
 import {
   filterTemplate,
@@ -15,12 +16,6 @@ import {
   searchTemplate,
   sortTemplateByDate,
 } from "../../store/actions/action.creator";
-
-const Loader = () => (
-  <div className={styles.spinnerContainer}>
-    <div className={styles.spinner}></div>
-  </div>
-);
 
 const FormTemplate = ({ templates, total, ...props }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,7 +91,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
         />
       );
     } else {
-      return <Loader />;
+      return <Loader loading={props.loading} />;
     }
   };
 

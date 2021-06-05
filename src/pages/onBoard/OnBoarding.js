@@ -18,7 +18,7 @@ const OnBoarding = ({ total, templates, ...props }) => {
   return (
     <div className={styles.OnBoarding}>
       <div>
-        <img src={img} alt="" width="250px" height="80px" />
+        <img src={img} alt="" />
       </div>
       <div className={styles.loadContainer}>
         <div className={styles.loader}>
