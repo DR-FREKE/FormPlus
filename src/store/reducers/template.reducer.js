@@ -24,16 +24,25 @@ const templateReducer = (state = {}, action) => {
         filtering: true,
         filter_data: action.payload.filter_data,
         form_template: action.payload.result,
-        original: action.payload.templates,
+        original: action.payload.template,
         total: action.payload.total,
       };
     case type.SORT_BY_ORDER:
       return {
         ...state,
         loading: false,
+        date_sorting: false,
         sorting: true,
         form_template: action.payload.result,
-        // original: action.payload.original,
+        original: action.payload.template,
+      };
+    case type.SORT_BY_DATE:
+      return {
+        ...state,
+        loading: false,
+        sorting: false,
+        date_sorting: true,
+        form_template: action.payload.result,
       };
     case type.SEARCH_TEMPLATE:
       return {
@@ -49,9 +58,8 @@ const templateReducer = (state = {}, action) => {
         ...state,
         loading: false,
         searching: false,
-        form_template: [],
-        total: 0,
-        failed: action.payload,
+        failed: true,
+        failed_message: action.payload,
       };
     default:
       return state;

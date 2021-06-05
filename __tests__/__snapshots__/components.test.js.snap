@@ -24,6 +24,7 @@ exports[`test for header component should render the Header component 1`] = `
         name="search"
         onChange={[Function]}
         placeholder="Search Template"
+        value=""
       />
       <svg
         fill="currentColor"

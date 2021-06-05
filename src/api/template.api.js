@@ -24,8 +24,16 @@ const compareData = (value) => (content1, content2) => {
   }
 
   if (name_one > name_two && value == "asc") {
-    return 1;
+    return 2;
   }
+
+  return 0;
+};
+
+const compareDate = (value) => (date1, date2) => {
+  if (date1.date_created < date2.date_created && value == "dsc") return 1;
+
+  if (date1.date_created > date2.date_created && value == "asc") return 1;
 
   return 0;
 };
@@ -54,7 +62,7 @@ export const filterTemplateData = async (templates, filter_val) => {
         : templates.filter(getCategory(filter_val));
     const total = result.length;
 
-    return { result, total, templates };
+    return { result, total };
   } else {
     throw new Error("an error occured");
   }
@@ -72,6 +80,18 @@ export const sortByOrder = (templates, value) => {
   }
 };
 
+export const sortByDate = (templates, value) => {
+  if (templates.length > 0) {
+    const result = templates.sort(compareDate(value));
+
+    const total = result.length;
+
+    return { result, total };
+  } else {
+    throw new Error("an error occured");
+  }
+};
+
 export const searchTemplateForm = async (templates, value) => {
   if (templates.length > 0) {
     const result = templates.filter((content) =>
@@ -79,9 +99,7 @@ export const searchTemplateForm = async (templates, value) => {
     );
     const total = result.length;
 
-    if (total <= 0) {
-      throw new Error("does not exists");
-    }
+    if (total <= 0) throw new Error("Template does not exists");
     return { result, total };
   } else {
     throw new Error("an error occured");

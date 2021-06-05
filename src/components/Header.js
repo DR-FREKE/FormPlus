@@ -13,35 +13,37 @@ export const Dropdown = ({ name, children, ...props }) => (
 );
 
 const Header = (props) => {
-  const [value, setValue] = useState({
-    category: "",
-    order: "",
-    date: "",
-    search: "",
-  });
+  const [category, setCategory] = useState("");
+  const [order, setOrder] = useState("");
+  const [date, setDate] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (value.category != "") props.runFilter(value.category);
-    if (value.order != "") props.sortOrder(value.order);
+    if (category != "") props.runFilter(category);
+    if (order != "") props.sortOrder(order);
+    if (date != "") props.sortDate(date);
+  }, [category, order, search, date]);
 
-    if (value.search.length > 0) props.search(value.search);
-    // resetInput();
-  }, [value]);
-
-  const handleChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value,
-    });
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+    setOrder("");
+    setDate("");
   };
 
-  const resetInput = () => {
-    if (value.category != "") {
-      setValue({
-        ...value,
-        order: "default",
-      });
-    }
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value, checkSearchField(e.target.value));
+  };
+
+  const checkSearchField = (val) => {
+    props.search(val);
   };
 
   return (
@@ -51,11 +53,12 @@ const Header = (props) => {
           <input
             placeholder="Search Template"
             name="search"
-            onChange={handleChange}
+            value={search}
+            onChange={handleSearchChange}
           />
           <IoIosSearch
             style={{ cursor: "pointer", fontSize: "20px" }}
-            onClick={() => props.search(value.search)}
+            onClick={() => props.search(search)}
           />
         </div>
       </div>
@@ -63,19 +66,19 @@ const Header = (props) => {
         <span>Sort By:</span>
         <Dropdown
           name="category"
-          value={value.category}
-          setValue={handleChange}>
+          value={category}
+          setValue={handleCategoryChange}>
           <option value="All Templates">All</option>
           <option value="Education">Education</option>
           <option value="E-commerce">E-commerce</option>
           <option value="Health">Health</option>
         </Dropdown>
-        <Dropdown name="order" value={value.order} setValue={handleChange}>
-          <option value={value.order == "" ? "default" : ""}>Default</option>
+        <Dropdown name="order" value={order} setValue={handleOrderChange}>
+          <option value="default">Default</option>
           <option value="asc">Ascending</option>
           <option value="dsc">Desending</option>
         </Dropdown>
-        <Dropdown name="date" value={value.date} setValue={handleChange}>
+        <Dropdown name="date" value={date} setValue={handleDateChange}>
           <option value="default">Default</option>
           <option value="asc">Ascending</option>
           <option value="dsc">Desending</option>

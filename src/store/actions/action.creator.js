@@ -3,6 +3,7 @@ import {
   filterTemplateData,
   sortByOrder,
   searchTemplateForm,
+  sortByDate,
 } from "../../api/template.api";
 import * as type from "./action.types";
 
@@ -30,13 +31,10 @@ export const filterTemplate =
   async (dispatch) => {
     dispatch({ type: type.LOADING });
     try {
-      const { result, total, templates } = await filterFn(
-        template,
-        filter_data
-      );
+      const { result, total } = await filterFn(template, filter_data);
       dispatch({
         type: type.FILTER_TEMPLATE,
-        payload: { result, total, filter_data, templates },
+        payload: { result, total, filter_data, template },
       });
     } catch (error) {
       dispatch({ type: type.GET_ERROR, payload: error.message });
@@ -50,8 +48,19 @@ export const sortTemplateByOrder = (template, value) => async (dispatch) => {
     const { result, total } = sortByOrder(template, value);
     dispatch({
       type: type.SORT_BY_ORDER,
-      payload: { result, total },
+      payload: { result, total, template },
     });
+  } catch (error) {
+    dispatch({ type: type.GET_ERROR, payload: error.message });
+  }
+};
+
+export const sortTemplateByDate = (template, value) => async (dispatch) => {
+  dispatch({ type: type.LOADING });
+
+  try {
+    const { result, total } = sortByDate(template, value);
+    dispatch({ type: type.SORT_BY_DATE, payload: { result, total } });
   } catch (error) {
     dispatch({ type: type.GET_ERROR, payload: error.message });
   }
