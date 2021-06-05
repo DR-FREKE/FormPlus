@@ -19,13 +19,9 @@ const compareData = (value) => (content1, content2) => {
   // convert to small letters
   const name_one = content1.template_name.toLowerCase();
   const name_two = content2.template_name.toLowerCase();
-  if (name_one < name_two && value == "dsc") {
-    return 1;
-  }
+  if (name_one < name_two && value == "dsc") return 1;
 
-  if (name_one > name_two && value == "asc") {
-    return 2;
-  }
+  if (name_one > name_two && value == "asc") return 2;
 
   return 0;
 };
@@ -33,7 +29,7 @@ const compareData = (value) => (content1, content2) => {
 const compareDate = (value) => (date1, date2) => {
   if (date1.date_created < date2.date_created && value == "dsc") return 1;
 
-  if (date1.date_created > date2.date_created && value == "asc") return 1;
+  if (date1.date_created > date2.date_created && value == "asc") return 2;
 
   return 0;
 };

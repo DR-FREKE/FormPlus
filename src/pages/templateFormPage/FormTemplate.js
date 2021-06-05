@@ -69,12 +69,12 @@ const FormTemplate = ({ templates, total, ...props }) => {
 
   const handleSortOrder = (value) => {
     props.sortTemplateByOrder(templates, value);
-    loadList();
+    if (props.sorting == true) loadList();
   };
 
   const handleSortDate = (value) => {
     props.sortTemplateByDate(templates, value);
-    loadList();
+    if (props.date_sorting == true) loadList();
   };
 
   const handleSearch = (value) => {

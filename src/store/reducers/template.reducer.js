@@ -43,13 +43,14 @@ const templateReducer = (state = {}, action) => {
         sorting: false,
         date_sorting: true,
         form_template: action.payload.result,
+        original: action.payload.template,
       };
     case type.SEARCH_TEMPLATE:
       return {
         ...state,
         loading: false,
         searching: true,
-        failed: "",
+        failed: false,
         form_template: action.payload.result,
         total: action.payload.total,
       };
