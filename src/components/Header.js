@@ -28,6 +28,7 @@ const Header = (props) => {
     setCategory(e.target.value);
     setOrder("");
     setDate("");
+    setSearch("");
   };
 
   const handleOrderChange = (e) => {

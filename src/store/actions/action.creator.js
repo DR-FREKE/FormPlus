@@ -32,6 +32,10 @@ export const filterTemplate =
     dispatch({ type: type.LOADING });
     try {
       const { result, total } = await filterFn(template, filter_data);
+      filter_data =
+        filter_data == "All Templates"
+          ? filter_data
+          : filter_data + " Templates";
       dispatch({
         type: type.FILTER_TEMPLATE,
         payload: { result, total, filter_data, template },
