@@ -73,6 +73,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
 
   const handleSortOrder = (value) => {
     props.sortTemplateByOrder(templates, value);
+    loadList();
   };
 
   const handleSortDate = (value) => {
