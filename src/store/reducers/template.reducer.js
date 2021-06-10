@@ -26,7 +26,6 @@ const templateReducer = (state = initialState, action) => {
         total: action.payload.total,
       };
     case type.FILTER_TEMPLATE:
-      alert(JSON.stringify(action.payload.template));
       return {
         ...state,
         loading: false,
