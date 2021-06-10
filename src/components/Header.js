@@ -22,7 +22,7 @@ const Header = (props) => {
     if (category != "") props.runFilter(category);
     if (order != "") props.sortOrder(order);
     if (date != "") props.sortDate(date);
-  }, [category, order, search, date]);
+  }, [category, order, date]);
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);

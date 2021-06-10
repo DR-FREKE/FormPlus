@@ -23,24 +23,28 @@ const FormTemplate = ({ templates, total, ...props }) => {
   const NUMBER_ON_PAGE = 15;
 
   useEffect(() => {
-    if (total > 0) loadList();
+    if (total > 0 && templates) loadList();
 
     if ((total <= 0 || total == undefined) && !props.failed)
       props.getTemplates();
   }, [
     currentPage,
     total,
+    props.filtering,
     props.sorting,
+    props.date_sorting,
     props.searching,
     props.failed,
-    props.date_sorting,
+    templates,
   ]);
 
   const loadList = () => {
     // to reduce whats rendered when page loads
     const begin = (currentPage - 1) * NUMBER_ON_PAGE;
     const end = begin + NUMBER_ON_PAGE;
+
     let sliced_data = templates && templates.slice(begin, end);
+    // alert(JSON.stringify(sliced_data));
 
     setSliceData(sliced_data);
     window.scrollTo(0, 0);
@@ -69,12 +73,10 @@ const FormTemplate = ({ templates, total, ...props }) => {
 
   const handleSortOrder = (value) => {
     props.sortTemplateByOrder(templates, value);
-    if (props.sorting == true) loadList();
   };
 
   const handleSortDate = (value) => {
     props.sortTemplateByDate(templates, value);
-    if (props.date_sorting == true) loadList();
   };
 
   const handleSearch = (value) => {
@@ -82,7 +84,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
   };
 
   const renderItem = () => {
-    if (!props.loading && total > 0) {
+    if (!props.loading) {
       return (
         <TemplateList
           name={props.filter_data}

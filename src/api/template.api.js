@@ -19,19 +19,48 @@ const compareData = (value) => (content1, content2) => {
   // convert to small letters
   const name_one = content1.template_name.toLowerCase();
   const name_two = content2.template_name.toLowerCase();
-  if (name_one < name_two && value == "dsc") return 1;
 
-  if (name_one > name_two && value == "asc") return 2;
+  if (value === "dsc") {
+    if (name_one < name_two) {
+      return 1;
+    }
 
-  return 0;
+    if (name_one > name_two) {
+      return -1;
+    }
+  } else if (value === "asc") {
+    if (name_one < name_two) {
+      return -1;
+    }
+
+    if (name_one > name_two) {
+      return 1;
+    }
+  } else {
+    return 0;
+  }
 };
 
 const compareDate = (value) => (date1, date2) => {
-  if (date1.date_created < date2.date_created && value == "dsc") return 1;
+  if (value === "dsc") {
+    if (date1.date_created < date2.date_created) {
+      return 1;
+    }
 
-  if (date1.date_created > date2.date_created && value == "asc") return 2;
+    if (date1.date_created > date2.date_created) {
+      return -1;
+    }
+  } else if (value === "asc") {
+    if (date1.date_created < date2.date_created) {
+      return -1;
+    }
 
-  return 0;
+    if (date1.date_created > date2.date_created) {
+      return 1;
+    }
+  } else {
+    return 0;
+  }
 };
 
 //fetch the data using this endpoint
@@ -64,7 +93,7 @@ export const filterTemplateData = async (templates, filter_val) => {
   }
 };
 
-export const sortByOrder = (templates, value) => {
+export const sortByOrder = async (templates, value) => {
   if (templates.length > 0) {
     const result = templates.sort(compareData(value));
 
@@ -76,7 +105,7 @@ export const sortByOrder = (templates, value) => {
   }
 };
 
-export const sortByDate = (templates, value) => {
+export const sortByDate = async (templates, value) => {
   if (templates.length > 0) {
     const result = templates.sort(compareDate(value));
 

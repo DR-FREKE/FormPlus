@@ -49,7 +49,7 @@ export const sortTemplateByOrder = (template, value) => async (dispatch) => {
   dispatch({ type: type.LOADING });
 
   try {
-    const { result, total } = sortByOrder(template, value);
+    const { result, total } = await sortByOrder(template, value);
     dispatch({
       type: type.SORT_BY_ORDER,
       payload: { result, total, template },
@@ -63,7 +63,7 @@ export const sortTemplateByDate = (template, value) => async (dispatch) => {
   dispatch({ type: type.LOADING });
 
   try {
-    const { result, total } = sortByDate(template, value);
+    const { result, total } = await sortByDate(template, value);
     dispatch({ type: type.SORT_BY_DATE, payload: { result, total, template } });
   } catch (error) {
     dispatch({ type: type.GET_ERROR, payload: error.message });
@@ -71,11 +71,14 @@ export const sortTemplateByDate = (template, value) => async (dispatch) => {
 };
 
 export const searchTemplate = (template, value) => async (dispatch) => {
-  dispatch({ type: type.LOADING });
+  // dispatch({ type: type.LOADING });
 
   try {
     const { result, total } = await searchTemplateForm(template, value);
-    dispatch({ type: type.SEARCH_TEMPLATE, payload: { result, total } });
+    dispatch({
+      type: type.SEARCH_TEMPLATE,
+      payload: { result, total, template },
+    });
   } catch (error) {
     dispatch({ type: type.GET_ERROR, payload: error.message });
   }

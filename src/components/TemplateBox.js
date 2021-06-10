@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/Template.module.css";
 
 const TemplateBox = (props) => (
-  <div className={styles.box}>
+  <div key={props.id} className={styles.box}>
     <div className={styles.topBox}>
       <div className={styles.topHeader}>
         <span>{props.template_name}</span>
