@@ -42,25 +42,11 @@ const compareData = (value) => (content1, content2) => {
 };
 
 const compareDate = (value) => (date1, date2) => {
-  if (value === "dsc") {
-    if (date1.date_created < date2.date_created) {
-      return 1;
-    }
+  if (date1.date_created < date2.date_created && value == "dsc") return 1;
 
-    if (date1.date_created > date2.date_created) {
-      return -1;
-    }
-  } else if (value === "asc") {
-    if (date1.date_created < date2.date_created) {
-      return -1;
-    }
+  if (date1.date_created > date2.date_created && value == "asc") return 2;
 
-    if (date1.date_created > date2.date_created) {
-      return 1;
-    }
-  } else {
-    return 0;
-  }
+  return 0;
 };
 
 //fetch the data using this endpoint
@@ -95,7 +81,8 @@ export const filterTemplateData = async (templates, filter_val) => {
 
 export const sortByOrder = async (templates, value) => {
   if (templates.length > 0) {
-    const result = templates.sort(compareData(value));
+    const result =
+      value == "default" ? templates : templates.sort(compareData(value));
 
     const total = result.length;
 

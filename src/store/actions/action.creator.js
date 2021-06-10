@@ -52,7 +52,7 @@ export const sortTemplateByOrder = (template, value) => async (dispatch) => {
     const { result, total } = await sortByOrder(template, value);
     dispatch({
       type: type.SORT_BY_ORDER,
-      payload: { result, total, template },
+      payload: { result, total },
     });
   } catch (error) {
     dispatch({ type: type.GET_ERROR, payload: error.message });
@@ -64,7 +64,7 @@ export const sortTemplateByDate = (template, value) => async (dispatch) => {
 
   try {
     const { result, total } = await sortByDate(template, value);
-    dispatch({ type: type.SORT_BY_DATE, payload: { result, total, template } });
+    dispatch({ type: type.SORT_BY_DATE, payload: { result, total } });
   } catch (error) {
     dispatch({ type: type.GET_ERROR, payload: error.message });
   }

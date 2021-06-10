@@ -18,25 +18,21 @@ const Header = (props) => {
   const [date, setDate] = useState("");
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    if (category != "") props.runFilter(category);
-    if (order != "") props.sortOrder(order);
-    if (date != "") props.sortDate(date);
-  }, [category, order, date]);
-
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    setCategory(e.target.value, props.runFilter(e.target.value));
     setOrder("");
     setDate("");
     setSearch("");
   };
 
   const handleOrderChange = (e) => {
-    setOrder(e.target.value);
+    setOrder(e.target.value, props.sortOrder(e.target.value));
+    setDate("");
   };
 
   const handleDateChange = (e) => {
-    setDate(e.target.value);
+    setDate(e.target.value, props.sortDate(e.target.value));
+    setOrder("");
   };
 
   const handleSearchChange = (e) => {

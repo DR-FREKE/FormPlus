@@ -23,7 +23,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
   const NUMBER_ON_PAGE = 15;
 
   useEffect(() => {
-    if (total > 0 && templates) loadList();
+    if (total > 0 && props.loading != true) loadList();
 
     if ((total <= 0 || total == undefined) && !props.failed)
       props.getTemplates();
@@ -35,7 +35,7 @@ const FormTemplate = ({ templates, total, ...props }) => {
     props.date_sorting,
     props.searching,
     props.failed,
-    templates,
+    props.loading,
   ]);
 
   const loadList = () => {
@@ -72,12 +72,11 @@ const FormTemplate = ({ templates, total, ...props }) => {
   };
 
   const handleSortOrder = (value) => {
-    props.sortTemplateByOrder(templates, value);
-    loadList();
+    props.sortTemplateByOrder(templates, value, props.original_templates);
   };
 
   const handleSortDate = (value) => {
-    props.sortTemplateByDate(templates, value);
+    props.sortTemplateByDate(templates, value, props.original_templates);
   };
 
   const handleSearch = (value) => {
